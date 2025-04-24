@@ -48,6 +48,7 @@ if(DOWNLOAD_PARLAY)
     GIT_TAG         master
   )
   FetchContent_GetProperties(parlaylib)
+  FetchContent_MakeAvailable(parlaylib)
   if(NOT parlaylib_POPULATED)
     FetchContent_Populate(parlaylib)  
     add_subdirectory(${parlaylib_SOURCE_DIR} EXCLUDE_FROM_ALL)
@@ -72,10 +73,6 @@ else()
   target_link_libraries(flock INTERFACE optimized ${JEMALLOC_LIB})
 endif()
 
+
 # -------------------------------------------------------------------
 #                       Benchmarks
-
-add_subdirectory(benchmark)
-
-add_subdirectory(setbench)
-
