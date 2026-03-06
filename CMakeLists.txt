@@ -27,7 +27,7 @@ set(FLOCK_INCLUDE_DIR "${FLOCK_SOURCE_DIR}/include")
 add_library(flock INTERFACE)
 target_include_directories(flock INTERFACE ${FLOCK_INCLUDE_DIR})
 target_compile_features(flock INTERFACE cxx_std_17)
-target_compile_options(flock INTERFACE -mcx16 -march=native -g)
+# target_compile_options(flock INTERFACE -mcx16 -march=native -g)
 
 # Find threading library
 find_package(Threads REQUIRED)
@@ -64,14 +64,6 @@ else()
   endif()
 endif()
 
-# Link against jemalloc
-find_library(JEMALLOC_LIB jemalloc)
-if(NOT JEMALLOC_LIB)
-  message(FATAL_ERROR "Could not find jemalloc.")
-else()
-  message("-- Found jemalloc: ${JEMALLOC_LIB}")
-  target_link_libraries(flock INTERFACE optimized ${JEMALLOC_LIB})
-endif()
 
 
 # -------------------------------------------------------------------
